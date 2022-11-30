@@ -59,8 +59,13 @@ public class AdventOfCode {
             new Day25(inputProvider),
         };
 
-        for (Day puzzle : puzzles) {
-            puzzle.solvePuzzles();
+        int start = 0;
+        if (args.length > 0) {
+            start = Integer.parseInt(args[0]) - 1;
+        }
+
+        for (int i=start; i<puzzles.length; i++) {
+            puzzles[i].solvePuzzles();
         }
     }
 }
