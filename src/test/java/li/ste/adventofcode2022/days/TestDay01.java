@@ -15,11 +15,11 @@ public class TestDay01 {
 
     @Test
     void testSolution1() {
-        assertEquals("@todo", day.getSolution1()); // TODO: check solution 1 of day 1
+        assertEquals("24000", day.getSolution1());
     }
 
     @Test
     void testSolution2() {
-        assertEquals("@todo", day.getSolution2()); // TODO: check solution 2 of day 1
+        assertEquals("45000", day.getSolution2());
     }
 }
