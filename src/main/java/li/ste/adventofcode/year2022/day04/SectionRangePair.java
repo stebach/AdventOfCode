@@ -25,7 +25,7 @@ public class SectionRangePair implements RegexResultRecipient {
     }
 
     public boolean overlaps() {
-        return ((from1 <= from2 && to1 >= from2) || (from2 <= from1 && to2 >= from1));
+        return !(to1 < from2 || from1 > to2);
     }
 }
 
