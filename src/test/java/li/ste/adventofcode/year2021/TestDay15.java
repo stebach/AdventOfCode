@@ -1,30 +1,30 @@
-package li.ste.adventofcode.year2022;
+package li.ste.adventofcode.year2021;
 
 import li.ste.adventofcode.utils.TestInputProvider;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayNameGeneration(li.ste.adventofcode.DisplayNameGenerator.class)
-public class TestDay23 {
-    private static Day23 day;
+
+public class TestDay15 {
+    private static Day15 day;
 
     @BeforeAll
     public static void prepareTest() {
-        day = new Day23(new TestInputProvider());
+        day = new Day15(new TestInputProvider());
         day.run();
     }
 
     @Test
     void testSolution1() {
-        assertEquals("@todo", day.getSolution1()); // TODO: check solution 1 of day 23
+        assertEquals("40", day.getSolution1());
     }
 
     @Test
     void testSolution2() {
-        assertEquals("@todo", day.getSolution2()); // TODO: check solution 2 of day 23
+        assertEquals("315", day.getSolution2());
     }
 }
