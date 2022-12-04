@@ -2,6 +2,9 @@ package li.ste.adventofcode.year2021;
 
 import li.ste.adventofcode.utils.Day;
 import li.ste.adventofcode.utils.InputProvider;
+import li.ste.adventofcode.year2021.day09.Grid;
+
+import java.util.List;
 
 public class Day09 extends Day {
     public static void main(String[] args) {
@@ -15,7 +18,17 @@ public class Day09 extends Day {
 
     @Override
     public void run() {
-        setSolution1("@todo");
-        setSolution2("@todo");
+        Grid grid = new Grid();
+        for (String line : getData()) {
+            grid.addLine(line);
+        }
+
+        List<int[]> lowPoints = grid.getLowPointCoords();
+        int riskLevel = grid.getSumOfCoords(lowPoints) + lowPoints.size();
+
+        int basins = grid.calcBasins();
+
+        setSolution1(riskLevel);
+        setSolution2(basins);
     }
 }
