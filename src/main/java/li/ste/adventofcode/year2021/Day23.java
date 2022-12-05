@@ -3,6 +3,7 @@ package li.ste.adventofcode.year2021;
 import li.ste.adventofcode.utils.AdventOfCodeException;
 import li.ste.adventofcode.utils.Day;
 import li.ste.adventofcode.utils.InputProvider;
+import li.ste.adventofcode.year2021.day23.FigurePosition;
 import li.ste.adventofcode.year2021.day23.Position;
 
 import java.util.*;
@@ -121,28 +122,36 @@ public class Day23 extends Day {
             }
         }
 
-        int costIndex = figures.size();
-        figures.add(0); // last spot for movement cost
-
-        int minSolveCost = Integer.MAX_VALUE;
-
         // now solve it!
         int validPositionCount = goalCount + corridorCount;
-        Set<List<Integer>> figurePositions = new HashSet<>();
-        figurePositions.add(figures);
 
+        SortedSet<FigurePosition> positionList = new TreeSet<>((o1, o2) -> {
+            if (o1.equals(o2)) {
+                return 0;
+            }
+            if (o1.getCost() < o2.getCost()) {
+                return -1;
+            }
+            if (o1.getCost() > o2.getCost()) {
+                return 1;
+            }
+            if (o1.hashCode() < o2.hashCode()) {
+                return -1;
+            }
+            return 1;
+        });
+        Set<FigurePosition> completedPositions = new HashSet<>();
+        positionList.add(new FigurePosition(figures));
+
+        int minSolveCost = Integer.MAX_VALUE;
         int totalRuns = 0;
 
-        while (!figurePositions.isEmpty()) {
-            List<Integer> currentFigurePositions = figurePositions.iterator().next();
-            figurePositions.remove(currentFigurePositions);
-
-            if (currentFigurePositions.get(costIndex) >= minSolveCost) {
-                continue;
-            }
+        while (!positionList.isEmpty()) {
+            FigurePosition currentFigurePositions = positionList.first();
+            positionList.remove(currentFigurePositions);
 
             for (int figure=0; figure<validPositionCount; figure ++) {
-                if (currentFigurePositions.get(figure) == 0) {
+                if (currentFigurePositions.figureAtPosition(figure) == 0) {
                     continue; //no figure there
                 }
                 // check if it is a solved one
@@ -163,21 +172,15 @@ public class Day23 extends Day {
 
                 for (int target=from; target<to; target++) {
                     //check if target is valid
-                    int moves = 0;
-                    if (currentFigurePositions.get(figure) < 3 || (target > 2 || target < 7)) {
-                        moves = calcMoves(figure, target ,allValidFields, connectedList, currentFigurePositions, goalMap);
-                    }
+                    int moves = calcMoves(figure, target ,allValidFields, connectedList, currentFigurePositions, goalMap);
 
                     if (moves > 0) {
+                        FigurePosition newFigurePositions = currentFigurePositions.clone();
+                        newFigurePositions.addCost(currentFigurePositions, moves * (int)Math.pow(10,newFigurePositions.figureAtPosition(figure)-1));
+                        newFigurePositions.setFigureAtPosition(target, newFigurePositions.figureAtPosition(figure));
+                        newFigurePositions.setFigureAtPosition(figure, 0);
 
-                        List<Integer> newFigurePositions = new ArrayList<>(currentFigurePositions);
-
-                        int currentCost = newFigurePositions.get(costIndex);
-                        int newCost = currentCost + moves * (int)Math.pow(10,newFigurePositions.get(figure)-1);
-                        newFigurePositions.set(costIndex, newCost);
-
-                        newFigurePositions.set(target, newFigurePositions.get(figure));
-                        newFigurePositions.set(figure, 0);
+                        // check if its not a solved one
 
                         Position targetField = connectedList.get(allValidFields.get(target));
                         boolean completed = false;
@@ -186,7 +189,7 @@ public class Day23 extends Day {
                             completed = true;
                             for (Map.Entry<Integer, Map<Integer,Integer>> goalMapEntry : goalMap.entrySet()) {
                                 for (Map.Entry<Integer, Integer> goalIndexEntry : goalMapEntry.getValue().entrySet()) {
-                                    if (!newFigurePositions.get(goalIndexEntry.getValue()).equals(goalMapEntry.getKey())) {
+                                    if (newFigurePositions.figureAtPosition(goalIndexEntry.getValue()) != goalMapEntry.getKey().intValue()) {
                                         completed = false;
                                         break;
                                     }
@@ -198,28 +201,43 @@ public class Day23 extends Day {
                         }
 
                         if (completed) {
-                            if (minSolveCost > newFigurePositions.get(costIndex)) {
-                                minSolveCost = newFigurePositions.get(costIndex);
+                            if (minSolveCost > newFigurePositions.getCost()) {
+                                minSolveCost = newFigurePositions.getCost();
                                 out("new best found: " + minSolveCost);
+
+                                //remove all that cost more!
+                                while (positionList.size() > 0 && positionList.last().getCost() >= minSolveCost) {
+                                    positionList.remove(positionList.last());
+                                }
+
                             }
                         } else  {
-                            if (newFigurePositions.get(costIndex) <= minSolveCost) {
-                                figurePositions.add(newFigurePositions);
+                            if (newFigurePositions.getCost() <= minSolveCost) {
+                                if (positionList.contains(newFigurePositions)) {
+                                    if (positionList.stream().filter(r -> r.equals(newFigurePositions)).findFirst().get().getCost() > newFigurePositions.getCost()) {
+                                        positionList.remove(newFigurePositions);
+                                        positionList.add(newFigurePositions);
+                                    }
+                                } else if (!completedPositions.contains(newFigurePositions)) {
+                                    positionList.add(newFigurePositions);
+                                }
                             }
                         }
                         totalRuns ++;
                         if (totalRuns % 100000 == 0) {
-                            out(totalRuns + " " + figurePositions.size());
+                            out(totalRuns + " " + positionList.size());
                         }
                     }
                 }
             }
+
+            completedPositions.add(currentFigurePositions);
         }
         return minSolveCost;
     }
 
-    private int calcMoves(int source, int target, List<String> allValidFields, Map<String, Position> connectedList, List<Integer> currentFigurePositions, Map<Integer, Map<Integer, Integer>> goalMap) {
-        if (currentFigurePositions.get(target) != 0) {
+    private int calcMoves(int source, int target, List<String> allValidFields, Map<String, Position> connectedList, FigurePosition currentFigurePositions, Map<Integer, Map<Integer, Integer>> goalMap) {
+        if (currentFigurePositions.figureAtPosition(target) != 0) {
             return 0; // field has to be empty
         }
         Position sourceField = connectedList.get(allValidFields.get(source));
@@ -227,7 +245,7 @@ public class Day23 extends Day {
         if (sourceField.isGoal() == targetField.isGoal()) {
             return 0; // type has to change
         }
-        if (targetField.isGoal() && !targetField.isGoalFor(currentFigurePositions.get(source))) {
+        if (targetField.isGoal() && !targetField.isGoalFor(currentFigurePositions.figureAtPosition(source))) {
             return 0; // wrong goal area
         }
         if (targetField.isGoal() && targetField.getGoalNr() > 1) {
@@ -246,7 +264,7 @@ public class Day23 extends Day {
             while (currentY != targetField.getY()) {
                 currentY--;
                 Position check = connectedList.get(currentX + "_" + currentY);
-                if (!check.isInvalidStop() && currentFigurePositions.get(check.getFigureIndex()) != 0) {
+                if (!check.isInvalidStop() && currentFigurePositions.figureAtPosition(check.getFigureIndex()) != 0) {
                     return 0;
                 }
                 moves ++;
@@ -260,7 +278,7 @@ public class Day23 extends Day {
         while (currentX != targetField.getX()) {
             currentX += moveDirection;
             Position check = connectedList.get(currentX + "_" + currentY);
-            if (!check.isInvalidStop() && currentFigurePositions.get(check.getFigureIndex()) != 0) {
+            if (!check.isInvalidStop() && currentFigurePositions.figureAtPosition(check.getFigureIndex()) != 0) {
                 return 0;
             }
             moves ++;
@@ -271,7 +289,7 @@ public class Day23 extends Day {
             while (currentY != targetField.getY()) {
                 currentY++;
                 Position check = connectedList.get(currentX + "_" + currentY);
-                if (!check.isInvalidStop() && currentFigurePositions.get(check.getFigureIndex()) != 0) {
+                if (!check.isInvalidStop() && currentFigurePositions.figureAtPosition(check.getFigureIndex()) != 0) {
                     return 0;
                 }
                 moves ++;
@@ -281,8 +299,8 @@ public class Day23 extends Day {
         return moves;
     }
 
-    private boolean checkSolved(Position positionToCheck, List<Integer> currentFigurePositions, Map<String, Position> connectedList, Map<Integer, Map<Integer, Integer>> goalMap, List<String> allValidFields) {
-        if (positionToCheck.isGoalFor(currentFigurePositions.get(positionToCheck.getFigureIndex()))) {
+    private boolean checkSolved(Position positionToCheck, FigurePosition currentFigurePositions, Map<String, Position> connectedList, Map<Integer, Map<Integer, Integer>> goalMap, List<String> allValidFields) {
+        if (positionToCheck.isGoalFor(currentFigurePositions.figureAtPosition(positionToCheck.getFigureIndex()))) {
             if (positionToCheck.getGoalNr() == 1) {
                 return true;
             } else {
