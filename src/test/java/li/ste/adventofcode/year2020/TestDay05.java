@@ -19,12 +19,33 @@ public class TestDay05 {
     }
 
     @Test
+    void testSeatRows() {
+        assertEquals(70, day.getRowForSeat("BFFFBBFRRR"));
+        assertEquals(14, day.getRowForSeat("FFFBBBFRRR"));
+        assertEquals(102, day.getRowForSeat("BBFFBBFRLL"));
+    }
+
+    @Test
+    void testSeatColumns() {
+        assertEquals(7, day.getColumnForSeat("BFFFBBFRRR"));
+        assertEquals(7, day.getColumnForSeat("FFFBBBFRRR"));
+        assertEquals(4, day.getColumnForSeat("BBFFBBFRLL"));
+    }
+
+    @Test
+    void testSeatIDs() {
+        assertEquals(567, day.getIDForSeat("BFFFBBFRRR"));
+        assertEquals(119, day.getIDForSeat("FFFBBBFRRR"));
+        assertEquals(820, day.getIDForSeat("BBFFBBFRLL"));
+    }
+
+    @Test
     void testSolution1() {
-        assertEquals("@todo", day.getSolution1()); // TODO: check solution 1 of day 05
+        assertEquals("820", day.getSolution1());
     }
 
     @Test
     void testSolution2() {
-        assertEquals("@todo", day.getSolution2()); // TODO: check solution 2 of day 05
+        assertEquals("120", day.getSolution2());
     }
 }
