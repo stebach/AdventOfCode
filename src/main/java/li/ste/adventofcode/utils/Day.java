@@ -2,6 +2,7 @@ package li.ste.adventofcode.utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -111,6 +112,9 @@ public abstract class Day {
     protected void setSolution1(long solution) {
         solution1 = Long.toString(solution);
     }
+    protected void setSolution1(AtomicInteger solution) {
+        solution1 = solution.toString();
+    }
     protected void setSolution2(String solution) {
         solution2 = solution;
     }
@@ -121,4 +125,7 @@ public abstract class Day {
         solution2 = Long.toString(solution);
     }
 
+    protected void setSolution2(AtomicInteger solution) {
+        solution2 = solution.toString();
+    }
 }
