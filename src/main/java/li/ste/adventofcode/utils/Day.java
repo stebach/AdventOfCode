@@ -10,6 +10,7 @@ public abstract class Day {
 
     private final List<String> data;
     private List<Integer> intData;
+    private List<Long> longData;
     private List<Integer> binData;
     private String solution1;
     private String solution2;
@@ -40,6 +41,16 @@ public abstract class Day {
             }
          }
         return intData;
+    }
+
+    protected List<Long> getLongData() {
+        if (longData == null) {
+            longData = new ArrayList<>();
+            for (String line : data) {
+                longData.add(Long.parseLong(line, 10));
+            }
+         }
+        return longData;
     }
 
     protected List<Integer> getBinaryData() {

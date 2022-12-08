@@ -15,16 +15,17 @@ public class TestDay09 {
     @BeforeAll
     public static void prepareTest() {
         day = new Day09(new TestInputProvider());
+        day.setPreamble(5);
         day.run();
     }
 
     @Test
     void testSolution1() {
-        assertEquals("@todo", day.getSolution1()); // TODO: check solution 1 of day 09
+        assertEquals("127", day.getSolution1());
     }
 
     @Test
     void testSolution2() {
-        assertEquals("@todo", day.getSolution2()); // TODO: check solution 2 of day 09
+        assertEquals("62", day.getSolution2()); // TODO: check solution 2 of day 09
     }
 }
