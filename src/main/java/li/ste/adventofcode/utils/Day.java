@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 public abstract class Day {
 
     private final List<String> data;
+    private final InputProvider provider;
     private List<Integer> intData;
     private List<Long> longData;
     private List<Integer> binData;
@@ -18,6 +19,7 @@ public abstract class Day {
     public abstract void run();
 
     protected Day(InputProvider provider) {
+        this.provider = provider;
         data = provider.loadData(getClassNameLastPart());
     }
 
@@ -27,6 +29,10 @@ public abstract class Day {
                 classParts[classParts.length - 2].substring(4),
                 classParts[classParts.length - 1]
         };
+    }
+
+    protected Scanner getScanner() {
+        return provider.getScanner(getClassNameLastPart());
     }
 
     public List<String> getData() {
