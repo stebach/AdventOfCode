@@ -55,8 +55,7 @@ public class Day10 extends Day {
 
             //end of cycle
             if ("addx".equals(instruction) && instructionDuration == 1) {
-                int toAdd = scanner.nextInt();
-                x += toAdd;
+                x += scanner.nextInt();
             }
         }
 
