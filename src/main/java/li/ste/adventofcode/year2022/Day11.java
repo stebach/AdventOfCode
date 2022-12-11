@@ -3,6 +3,7 @@ package li.ste.adventofcode.year2022;
 import li.ste.adventofcode.utils.AdventOfCodeException;
 import li.ste.adventofcode.utils.Day;
 import li.ste.adventofcode.utils.InputProvider;
+import li.ste.adventofcode.year2022.day11.Monkey;
 
 import java.util.*;
 import java.util.regex.Matcher;
