@@ -1,4 +1,4 @@
-package li.ste.adventofcode.year2022;
+package li.ste.adventofcode.year2022.day11;
 
 import li.ste.adventofcode.utils.AdventOfCodeException;
 
