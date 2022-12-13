@@ -55,7 +55,7 @@ public class Day13 extends Day {
         allPackets.add(additionalPacket1);
         allPackets.add(additionalPacket2);
 
-        List.sort(allPackets, Day13::packetSorter);
+        allPackets.sort(Day13::packetSorter);
 
         setSolution2(
                 (allPackets.indexOf(additionalPacket1) + 1) *
