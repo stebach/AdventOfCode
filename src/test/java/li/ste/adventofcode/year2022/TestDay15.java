@@ -15,12 +15,14 @@ public class TestDay15 {
     @BeforeAll
     public static void prepareTest() {
         day = new Day15(new TestInputProvider());
+        day.setLineToCheck(10);
+        day.setMaxGridValue(20);
         day.run();
     }
 
     @Test
     void testSolution1() {
-        assertEquals("@todo", day.getSolution1()); // TODO: check solution 1 of day 15
+        assertEquals("26", day.getSolution1());
     }
 
     @Test
