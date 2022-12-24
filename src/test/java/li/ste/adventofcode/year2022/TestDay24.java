@@ -20,7 +20,7 @@ public class TestDay24 {
 
     @Test
     void testSolution1() {
-        assertEquals("@todo", day.getSolution1()); // TODO: check solution 1 of day 24
+        assertEquals("18", day.getSolution1());
     }
 
     @Test
