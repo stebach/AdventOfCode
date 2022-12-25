@@ -19,12 +19,25 @@ public class TestDay25 {
     }
 
     @Test
+    void testSnafu2Dec() {
+        assertEquals(4890, Day25.snafu2dec("2=-1=0"));
+        assertEquals(1747, Day25.snafu2dec("1=-0-2"));
+        assertEquals(31, Day25.snafu2dec("111"));
+    }
+
+    @Test
+    void testDec2Snafu() {
+        assertEquals("2=-1=0", Day25.dec2snafu(4890));
+        assertEquals("1=-0-2", Day25.dec2snafu(1747));
+        assertEquals("111", Day25.dec2snafu(31));
+    }
+    @Test
     void testSolution1() {
-        assertEquals("@todo", day.getSolution1()); // TODO: check solution 1 of day 25
+        assertEquals("2=-1=0", day.getSolution1());
     }
 
     @Test
     void testSolution2() {
-        assertEquals("@todo", day.getSolution2()); // TODO: check solution 2 of day 25
+        assertEquals("", day.getSolution2());
     }
 }
