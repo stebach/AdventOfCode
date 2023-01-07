@@ -1,17 +1,17 @@
-package li.ste.adventofcode.year{{YEAR}};
+package li.ste.adventofcode.year2019;
 
 import li.ste.adventofcode.utils.Day;
 import li.ste.adventofcode.utils.InputProvider;
 
 import java.util.*;
 
-public class Day{{DAY}} extends Day {
+public class Day23 extends Day {
     public static void main(String[] args) {
-        Day day = new Day{{DAY}}(new InputProvider());
+        Day day = new Day23(new InputProvider());
         day.solvePuzzles();
     }
 
-    public Day{{DAY}}(InputProvider provider) {
+    public Day23(InputProvider provider) {
         super(provider);
     }
 
