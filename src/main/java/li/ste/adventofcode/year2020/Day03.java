@@ -2,8 +2,8 @@ package li.ste.adventofcode.year2020;
 
 import li.ste.adventofcode.utils.Day;
 import li.ste.adventofcode.utils.InputProvider;
-import li.ste.adventofcode.year2020.day03.Grid;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Day03 extends Day {
@@ -35,5 +35,25 @@ public class Day03 extends Day {
 
         setSolution1(angles[1]);
         setSolution2(angles[0]*angles[1]*angles[2]*angles[3]*angles[4]);
+    }
+
+    private class Grid {
+        List<char[]> rows = new ArrayList<>();
+        public void addRow(String row) {
+            rows.add(row.toCharArray());
+        }
+
+        public int getHeight() {
+            return rows.size();
+        }
+
+        public boolean hasTreeAt(int x, int y) {
+            if (y >= rows.size()) {
+                return false;
+            }
+            char[] row = rows.get(y);
+            char check = row[x % row.length];
+            return check == '#';
+        }
     }
 }
