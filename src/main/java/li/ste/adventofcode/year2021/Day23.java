@@ -3,8 +3,6 @@ package li.ste.adventofcode.year2021;
 import li.ste.adventofcode.utils.AdventOfCodeException;
 import li.ste.adventofcode.utils.Day;
 import li.ste.adventofcode.utils.InputProvider;
-import li.ste.adventofcode.year2021.day23.FigurePosition;
-import li.ste.adventofcode.year2021.day23.Position;
 
 import java.util.*;
 
@@ -309,5 +307,120 @@ public class Day23 extends Day {
             }
         }
         return false;
+    }
+
+    private class FigurePosition {
+        private final List<Integer> positions;
+        private int cost;
+        private FigurePosition parent;
+
+        public FigurePosition(List<Integer> positions) {
+            this.positions = positions;
+        }
+
+        public int figureAtPosition(int position) {
+            return positions.get(position);
+        }
+
+        public FigurePosition clone() {
+            return new FigurePosition(new ArrayList<>(positions));
+        }
+
+        public void addCost(FigurePosition newParent, int costToAdd) {
+            if (parent == null || newParent.getCost() + costToAdd < parent.getCost() + cost) {
+                parent = newParent;
+                cost += costToAdd;
+            }
+        }
+
+        public void setFigureAtPosition(int target, int figure) {
+            positions.set(target, figure);
+        }
+
+        public int getCost() {
+            if (parent == null) {
+                return 0;
+            }
+            return cost + parent.getCost();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            FigurePosition that = (FigurePosition) o;
+            return positions.equals(that.positions);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(positions);
+        }
+    }
+
+    private class Position {
+        private final int x;
+        private final int y;
+        private boolean isGoal;
+        private int goalFor;
+        private boolean invalidStop;
+        private int goalNr;
+        private int figureIndex;
+
+
+        public Position(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public void setIsGoalFor(int goalFor) {
+            isGoal = true;
+            this.goalFor = goalFor;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public boolean isGoal() {
+            return isGoal;
+        }
+
+        public void setInvalidStop(boolean b) {
+            invalidStop = b;
+        }
+
+
+        public boolean isInvalidStop() {
+            return invalidStop;
+        }
+
+        public boolean isGoalFor(int goalFor) {
+            return this.goalFor == goalFor;
+        }
+
+        public void increaseGoalNr() {
+            goalNr += 1;
+        }
+
+        public int getGoalFor() {
+            return goalFor;
+        }
+
+        public int getGoalNr() {
+            return goalNr;
+        }
+
+        public void setFigureIndex(int i) {
+            figureIndex = i;
+        }
+
+        public int getFigureIndex() {
+            return figureIndex;
+        }
     }
 }
