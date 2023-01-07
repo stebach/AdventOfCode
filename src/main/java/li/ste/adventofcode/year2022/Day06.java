@@ -2,7 +2,6 @@ package li.ste.adventofcode.year2022;
 
 import li.ste.adventofcode.utils.Day;
 import li.ste.adventofcode.utils.InputProvider;
-import li.ste.adventofcode.year2022.day06.RepetitionFinder;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -64,5 +63,36 @@ public class Day06 extends Day {
             }
         }
         return true;
+    }
+
+    private class RepetitionFinder {
+        private static final int NotFound = -1;
+        private final int[] _foundCharacterCache = new int[] { NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound, NotFound };
+
+        public boolean HasRepetition(char[] line, int startIndex, int patternLength, AtomicInteger advance) {
+            for (int i = 0; i < patternLength; i++)
+            {
+                int c = line[startIndex + i] - 'a';
+                if (_foundCharacterCache[c] != NotFound)
+                {
+                    advance.set(_foundCharacterCache[c] + 1);
+                    CleanupCache(line, startIndex, i);
+                    return false;
+                }
+
+                _foundCharacterCache[c] = i;
+            }
+
+            advance.set(0);
+            return true;
+        }
+
+        private void CleanupCache(char[] line, int startIndex, int length) {
+            for (int i = 0; i < length; i++)
+            {
+                int c = line[startIndex + i] - 'a';
+                _foundCharacterCache[c] = NotFound;
+            }
+        }
     }
 }
