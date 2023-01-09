@@ -18,11 +18,23 @@ public class Day01 extends Day {
     @Override
     public void run() {
         Scanner scanner = getScanner();
-        while (scanner.hasNextLine()) {
-            System.out.println(scanner.nextLine());
+
+        int fuelNeeded = 0;
+        int fuelNeeded2 = 0;
+
+        while (scanner.hasNextInt()) {
+            int mass = scanner.nextInt();
+            int fuelStep = Math.floorDiv(mass, 3) - 2;
+            fuelNeeded += fuelStep;
+            int totalFuelForMass = fuelStep;
+            while (fuelStep > 8) {
+                fuelStep = Math.floorDiv(fuelStep, 3) - 2;
+                totalFuelForMass += fuelStep;
+            }
+            fuelNeeded2 += totalFuelForMass;
         }
 
-        setSolution1("@todo");
-        setSolution2("@todo");
+        setSolution1(fuelNeeded);
+        setSolution2(fuelNeeded2);
     }
 }
