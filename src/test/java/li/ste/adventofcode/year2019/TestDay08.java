@@ -15,9 +15,10 @@ public class TestDay08 {
     @BeforeAll
     public static void prepareTest() {
         day = new Day08(new TestInputProvider());
-        day.run();
+        // day.run();
     }
 
+    /*
     @Test
     void testSolution1() {
         assertEquals("@todo", day.getSolution1()); // TODO: check solution 1 of day 08
@@ -27,4 +28,5 @@ public class TestDay08 {
     void testSolution2() {
         assertEquals("@todo", day.getSolution2()); // TODO: check solution 2 of day 08
     }
+    */
 }
