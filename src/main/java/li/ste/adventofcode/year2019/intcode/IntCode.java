@@ -6,19 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IntCode {
-    public int[] run(int[] memory, int noun, int verb) {
-        return run(memory, noun, verb, new ArrayList<>(), new ArrayList<>());
+    private final int[] localMemory;
+    private final List<Integer> input;
+    private final List<Integer> output;
+    private int instructionPointer;
+
+    public IntCode(int[] memory, List<Integer> input, List<Integer> output) {
+        this.localMemory = memory.clone();
+        this.input = input;
+        this.output = output;
     }
 
-    public int[] run(int[] memory, List<Integer> input, List<Integer> output) {
-        return run(memory, memory[1], memory[2], input, output);
+    public IntCode(int[] memory, int noun, int verb) {
+        this.localMemory = memory.clone();
+        this.localMemory[1] = noun;
+        this.localMemory[2] = verb;
+        this.input = new ArrayList<>();
+        this.output = new ArrayList<>();
     }
 
-    private int[] run(int[] memory, int noun, int verb, List<Integer> input, List<Integer> output) {
-        int[] localMemory = memory.clone();
-        localMemory[1] = noun;
-        localMemory[2] = verb;
-        int instructionPointer = 0;
+
+    public int[] run() {
         while (localMemory[instructionPointer] != 99) {
             int operation = localMemory[instructionPointer] % 100;
             int modeMask = Integer.parseInt(String.valueOf(localMemory[instructionPointer] / 100), 2);
@@ -36,7 +44,7 @@ public class IntCode {
                 }
                 case 3 -> { // input
                     if (input.isEmpty()) {
-                        throw new AdventOfCodeException("IntCode: no input available");
+                        throw new IntCodeNoInputException("IntCode: no input available");
                     }
                     localMemory[localMemory[instructionPointer + 1]] = input.remove(0);
                     instructionPointer += 2;
@@ -85,6 +93,20 @@ public class IntCode {
     private int getParam(int paramNum, int modeMask, int[] localMemory, int instructionPointer) {
         int localMemoryVal = localMemory[instructionPointer + paramNum];
         return (((modeMask & (int)Math.pow(2, paramNum - 1)) > 0) ? localMemoryVal :  localMemory[localMemoryVal]);
+    }
+
+    public List<Integer> getOutput() {
+        return output;
+    }
+
+    public List<Integer> getInput() {
+        return input;
+    }
+
+    public class IntCodeNoInputException extends AdventOfCodeException {
+        public IntCodeNoInputException(String message) {
+            super(message);
+        }
     }
 }
 

@@ -21,15 +21,16 @@ public class Day05 extends Day {
         Scanner scanner = getScanner();
         int[] values = Arrays.stream(scanner.nextLine().split(",")).mapToInt(Integer::parseInt).toArray();
 
-        IntCode intCode = new IntCode();
 
         List<Integer> output = new ArrayList<>();
-        intCode.run(values.clone(), new ArrayList<>(List.of(1)), output);
+        IntCode intCode = new IntCode(values, new ArrayList<>(List.of(1)), output);
+        intCode.run();
         setSolution1(output.get(output.size() - 1));
 
 
         output.clear();
-        intCode.run(values.clone(), new ArrayList<>(List.of(5)), output);
+        intCode = new IntCode(values, new ArrayList<>(List.of(5)), output);
+        intCode.run();
         setSolution2(output.get(output.size() - 1));
     }
 }

@@ -21,9 +21,10 @@ public class Day02 extends Day {
         Scanner scanner = getScanner();
         int[] values = Arrays.stream(scanner.nextLine().split(",")).mapToInt(Integer::parseInt).toArray();
 
-        IntCode intCode = new IntCode();
+        IntCode intCode = new IntCode(values, 12, 2);
 
-        int[] result = intCode.run(values, 12, 2);
+
+        int[] result = intCode.run();
 
         setSolution1(result[0]);
 
@@ -31,7 +32,8 @@ public class Day02 extends Day {
         loop:
         for (int noun = 1; noun < 100; noun += 1) {
             for (int verb = 1; verb < 100; verb += 1) {
-                result = intCode.run(values, noun, verb);
+                intCode = new IntCode(values, noun, verb);
+                result = intCode.run();
                 if (result[0] == 19690720) {
                     result2 = noun * 100 + verb;
                     break loop;
