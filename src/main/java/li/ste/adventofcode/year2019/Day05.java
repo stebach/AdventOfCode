@@ -2,6 +2,7 @@ package li.ste.adventofcode.year2019;
 
 import li.ste.adventofcode.utils.Day;
 import li.ste.adventofcode.utils.InputProvider;
+import li.ste.adventofcode.year2019.intcode.IntCode;
 
 import java.util.*;
 
@@ -18,11 +19,17 @@ public class Day05 extends Day {
     @Override
     public void run() {
         Scanner scanner = getScanner();
-        while (scanner.hasNextLine()) {
-            System.out.println(scanner.nextLine());
-        }
+        int[] values = Arrays.stream(scanner.nextLine().split(",")).mapToInt(Integer::parseInt).toArray();
 
-        setSolution1("@todo");
-        setSolution2("@todo");
+        IntCode intCode = new IntCode();
+
+        List<Integer> output = new ArrayList<>();
+        intCode.run(values.clone(), new ArrayList<>(List.of(1)), output);
+        setSolution1(output.get(output.size() - 1));
+
+
+        output.clear();
+        intCode.run(values.clone(), new ArrayList<>(List.of(5)), output);
+        setSolution2(output.get(output.size() - 1));
     }
 }
