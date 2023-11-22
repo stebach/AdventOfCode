@@ -1,0 +1,15 @@
+"""
+Solution for day {{day}} of year {{year}}
+"""
+
+import os
+
+with open(os.path.dirname(__file__) + "/day{{day}}_input.txt", "r", encoding="utf-8") as inputdata:
+
+    # as one big text
+    # data = inputdata.read()
+
+    # as tuple
+    data = tuple(map(lambda line: line.strip(), inputdata.readlines()))
+
+print(data)
