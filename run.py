@@ -6,7 +6,7 @@ and force run the solution for the current day
 import os
 import subprocess
 import re
-from datetime import date
+from datetime import date, datetime
 import requests
 
 def run_scripts():
@@ -17,7 +17,7 @@ def run_scripts():
                 if re.match(r'^day[0-9]{2}\.py$', file):
                     run_script(year, file[3:5])
     today = str(date.today())
-    if today[5:7] == "12":
+    if today[5:7] == "12" and int(today[8:10]) < 26 and datetime.now().hour > 5:
         run_script(today[8:10], today[0:4], True)
 
 def run_script(year, day, force=False):
@@ -27,7 +27,7 @@ def run_script(year, day, force=False):
     and the input will be imported from adventofcode.com
     """
 
-    result_file = "./years/" +  year + "/day" + day + "_output.txt"
+    result_file = "./years/" +  year + "/day" + day + "/output.txt"
     if not os.path.exists(result_file) or force:
         print ("\nRunning day " + day + " of year " + year + "\n")
 
@@ -35,9 +35,13 @@ def run_script(year, day, force=False):
     if force and not os.path.exists(path):
         os.mkdir(path)
 
-    python_file = path + "/day" + day + ".py"
+    path = path + '/day' + day
+    if force and not os.path.exists(path):
+        os.mkdir(path)
+
+    python_file = path + "/solve.py"
     if force and not os.path.exists(python_file):
-        print ("\nCreating default script\n")
+        print ("Creating default script\n")
 
         with open("./template.txt", "r", encoding="utf-8") as template_file:
             data = template_file.read()
@@ -46,8 +50,19 @@ def run_script(year, day, force=False):
                 file.write(data.replace("{{day}}", day).replace("{{year}}", year))
                 file.close()
 
+    test_file = path + "/test_" + year + "_" + day + ".py"
+    if force and not os.path.exists(test_file):
+        print ("Creating test file\n")
 
-    input_file = path + "/day" + day + "_input.txt"
+        with open("./testtemplate.txt", "r", encoding="utf-8") as template_file:
+            data = template_file.read()
+            template_file.close()
+            with open(test_file, "w", encoding="utf-8") as file:
+                file.write(data.replace("{{day}}", day).replace("{{year}}", year))
+                file.close()
+
+
+    input_file = path + "/input.txt"
     if not os.path.exists(input_file):
         print ("\nFetching input\n")
         file_url = "https://adventofcode.com/" + year + "/day/" + day.lstrip("0") + "/input"
@@ -72,7 +87,7 @@ def run_script(year, day, force=False):
             print(f"Failed to download the file. Status code: {response.status_code}")
 
     if not os.path.exists(result_file) or force:
-        output = subprocess.check_output(["python", python_file], text=True)
+        output = subprocess.check_output(["python3", python_file], text=True)
 
         f = open(result_file, "w", encoding="utf-8")
         f.write(output)
@@ -81,3 +96,8 @@ def run_script(year, day, force=False):
         print("\n")
 
 run_scripts()
+run_script(day="01", year="2022", force=True)
+run_script(day="02", year="2022", force=True)
+run_script(day="01", year="2018", force=True)
+run_script(day="02", year="2018", force=True)
+run_script(day="03", year="2018", force=True)

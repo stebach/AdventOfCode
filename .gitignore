@@ -1,4 +1,5 @@
 /.vscode
 /session.txt
-/years/*/*_input.txt
-/years/*/*_output.txt
+/years/*/*/input.txt
+/years/*/*/output.txt
+__pycache__
