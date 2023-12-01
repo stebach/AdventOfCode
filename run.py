@@ -39,7 +39,7 @@ def run_script(year, day, force=False):
     if force and not os.path.exists(path):
         os.mkdir(path)
 
-    python_file = path + "/solve.py"
+    python_file = path + "/solve_" + year + "_" + day + ".py"
     if force and not os.path.exists(python_file):
         print ("Creating default script\n")
 
@@ -98,6 +98,3 @@ def run_script(year, day, force=False):
 run_scripts()
 run_script(day="01", year="2022", force=True)
 run_script(day="02", year="2022", force=True)
-run_script(day="01", year="2018", force=True)
-run_script(day="02", year="2018", force=True)
-run_script(day="03", year="2018", force=True)

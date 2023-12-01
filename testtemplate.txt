@@ -1,4 +1,4 @@
-import solve as subject
+import solve_{{year}}_{{day}} as subject
 import pytest
 
 @pytest.mark.skip(reason="not yet implemented")
