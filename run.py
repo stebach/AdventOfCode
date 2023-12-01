@@ -18,7 +18,7 @@ def run_scripts():
                     run_script(year, file[3:5])
     today = str(date.today())
     if today[5:7] == "12" and int(today[8:10]) < 26 and datetime.now().hour > 5:
-        run_script(today[8:10], today[0:4], True)
+        run_script(day=today[8:10], year=today[0:4], force=True)
 
 def run_script(year, day, force=False):
     """

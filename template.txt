@@ -18,10 +18,14 @@ def puzzle_input():
 
 def part1(data):
     """Solve part 1"""
+    print(data)
+    exit()
     return data
 
 def part2(data):
     """Solve part 2"""
+    print(data)
+    exit()
     return data
 
 def solve(data):
