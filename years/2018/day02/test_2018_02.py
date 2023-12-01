@@ -1,4 +1,4 @@
-import solve as subject
+import solve_2018_02 as subject
 import pytest
 
 def test_part1_example1():
