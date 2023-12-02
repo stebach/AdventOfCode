@@ -96,5 +96,3 @@ def run_script(year, day, force=False):
         print("\n")
 
 run_scripts()
-run_script(day="01", year="2022", force=True)
-run_script(day="02", year="2022", force=True)

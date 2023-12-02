@@ -1,5 +1,4 @@
 import solve_2022_02 as subject
-import pytest
 
 def test_part1_example1():
     puzzle_input = tuple(map(subject.process_line, ["A Y","B X","C Z"]))
