@@ -9,9 +9,9 @@ python, so my count may not be in sync with the starts on the AoC website.
 
 ## Overview of my progres
 
-|Year    |Stars   |Progress                                        |
-|--------|--------|------------------------------------------------|
-|2023    | 6/50    |![](https://mdtools.ste.li/progress/6/50.png)   |
+|Year    |Stars   |Progress                                         |
+|--------|--------|-------------------------------------------------|
+|2023    | 8/50    |![](https://mdtools.ste.li/progress/8/50.png)   |
 |2022    | 4/50    |![](https://mdtools.ste.li/progress/4/50.png)   |
 |2021    | 0/50    |![](https://mdtools.ste.li/progress/0/50.png)   |
 |2020    | 0/50    |![](https://mdtools.ste.li/progress/0/50.png)   |
@@ -20,5 +20,5 @@ python, so my count may not be in sync with the starts on the AoC website.
 |2017    | 0/50    |![](https://mdtools.ste.li/progress/0/50.png)   |
 |2016    | 0/50    |![](https://mdtools.ste.li/progress/0/50.png)   |
 |2015    | 0/50    |![](https://mdtools.ste.li/progress/0/50.png)   |
-|overall | 16/450  |![](https://mdtools.ste.li/progress/16/450.png)  |
+|overall | 18/450  |![](https://mdtools.ste.li/progress/18/450.png) |
 
