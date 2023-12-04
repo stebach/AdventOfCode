@@ -31,18 +31,3 @@ def test_part2_example1():
     ]))
     assert subject.part2(puzzle_input) == 2286
 
-@pytest.mark.skip(reason="not yet implemented")
-def test_part2_example2():
-    puzzle_input = [1,2,3]
-    assert subject.part2(puzzle_input) == 1
-
-@pytest.mark.skip(reason="not yet implemented")
-def test_part2_example3():
-    puzzle_input = [1,2,3]
-    assert subject.part2(puzzle_input) == 1
-
-@pytest.mark.skip(reason="not yet implemented")
-def test_part2_example4():
-    puzzle_input = [1,2,3]
-    assert subject.part2(puzzle_input) == 1
-
