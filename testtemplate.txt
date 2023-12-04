@@ -1,43 +1,43 @@
 import solve_{{year}}_{{day}} as subject
 import pytest
 
+@pytest.fixture
+def puzzle_input():
+    return [1, 2, 3]
+
 @pytest.mark.skip(reason="not yet implemented")
-def test_part1_example1():
-    puzzle_input = [1,2,3]
+def test_parse_line(puzzle_input):
+    assert subject.parse_line(puzzle_input) == 1
+
+@pytest.mark.skip(reason="not yet implemented")
+def test_part1_example1(puzzle_input):
     assert subject.part1(puzzle_input) == 1
 
 @pytest.mark.skip(reason="not yet implemented")
-def test_part1_example2():
-    puzzle_input = [1,2,3]
+def test_part1_example2(puzzle_input):
     assert subject.part1(puzzle_input) == 1
 
 @pytest.mark.skip(reason="not yet implemented")
-def test_part1_example3():
-    puzzle_input = [1,2,3]
+def test_part1_example3(puzzle_input):
     assert subject.part1(puzzle_input) == 1
 
 @pytest.mark.skip(reason="not yet implemented")
-def test_part1_example4():
-    puzzle_input = [1,2,3]
+def test_part1_example4(puzzle_input):
     assert subject.part1(puzzle_input) == 1
 
 @pytest.mark.skip(reason="not yet implemented")
-def test_part2_example1():
-    puzzle_input = [1,2,3]
+def test_part2_example1(puzzle_input):
     assert subject.part2(puzzle_input) == 1
 
 @pytest.mark.skip(reason="not yet implemented")
-def test_part2_example2():
-    puzzle_input = [1,2,3]
+def test_part2_example2(puzzle_input):
     assert subject.part2(puzzle_input) == 1
 
 @pytest.mark.skip(reason="not yet implemented")
-def test_part2_example3():
-    puzzle_input = [1,2,3]
+def test_part2_example3(puzzle_input):
     assert subject.part2(puzzle_input) == 1
 
 @pytest.mark.skip(reason="not yet implemented")
-def test_part2_example4():
-    puzzle_input = [1,2,3]
+def test_part2_example4(puzzle_input):
     assert subject.part2(puzzle_input) == 1
 
