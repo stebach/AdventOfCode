@@ -41,4 +41,4 @@ for year in years:
 '''
 
 with open(os.path.dirname(__file__) + "/" + input_file, 'w') as file:
-    file.write(regex.sub(pattern=r'\|Year.*?overall.*?\.png\)[ ]\|\n', repl=newTable, string=data, flags=regex.DOTALL))
+    file.write(regex.sub(pattern=r'\| Year.*?overall.*?\.png\)[ ]\|\n', repl=newTable, string=data, flags=regex.DOTALL))
