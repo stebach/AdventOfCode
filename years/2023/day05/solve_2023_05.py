@@ -24,7 +24,7 @@ def parse_lines(lines):
                 retval[current_group] = []
             elif line != "":
                 values = list(map(int, line.split( )))
-                retval[current_group] = retval[current_group] + [[range(values[1], values[1]+ values[2]), values[0]-values[1]]]
+                retval[current_group] = retval[current_group] + [[[values[1], values[1] + values[2]], values[0]-values[1]]]
 
     return retval
 
@@ -44,57 +44,63 @@ def seed_to_location(source, data):
 
 def translate(source, data):
     for translation in data:
-        if source in translation[0]:
+        if source >= translation[0][0] and source <= translation[0][1]:
             return source + translation[1]
-    return source
-
-def location_to_seed(source, data):
-    translations = [
-        'humidity-to-location',
-        'temperature-to-humidity',
-        'light-to-temperature',
-        'water-to-light',
-        'fertilizer-to-water',
-        'soil-to-fertilizer',
-        'seed-to-soil',
-    ]
-    for translation in translations:
-        source = invtranslate(source, data[translation])
-    return source
-
-def invtranslate(source, data):
-    for translation in data:
-        if source - translation[1] in translation[0]:
-            return source - translation[1]
     return source
 
 def part1(data):
     """Solve part 1"""
     return min(map(lambda x: seed_to_location(x, data), data['seeds']))
 
+def translateRange(seeds, data):
+    retval = []
+    while len(seeds) > 0:
+        seed = seeds.pop()
+        found = False
+        minSeed = seed[0]
+        maxSeed = seed[1]
+        for translationRange in data:
+            minRange = translationRange[0][0]
+            maxRange = translationRange[0][1]
+            diff = translationRange[1]
+            if not (maxSeed < minRange or minSeed > maxRange):
+                found = True
+                if minSeed >= minRange:
+                    if maxSeed <= maxRange:
+                        retval = retval + [[minSeed + diff, maxSeed + diff]]
+                    else:
+                        retval = retval + [[minSeed + diff, maxRange + diff]]
+                        seeds = seeds + [[maxRange + 1, maxSeed]]
+                else:
+                    if maxSeed <= maxRange:
+                        retval = retval + [[minRange + diff, maxSeed + diff]]
+                        seeds = seeds + [[minSeed, minRange - 1]]
+                    else:
+                        retval = retval + [[minRange + diff, maxRange + diff]]
+                        seeds = seeds + [[minSeed, minRange - 1], [maxRange + 1, maxSeed]]
+                break
+        if not found:
+            retval = retval + [seed]
+
+    return retval
+
 def part2(data, stepsize = 100):
     """Solve part 2"""
-    ranges = []
-    for seed in range(0, len(data['seeds']), 2):
-        ranges = ranges + [range(data['seeds'][seed], data['seeds'][seed] + data['seeds'][seed + 1])]
-    
-    location = 0
-    step = stepsize
-    while step >= 1:
-        answer = -1
-        while answer == -1:
-            seed = location_to_seed(location, data)
-            for range_check in ranges:
-                if seed in range_check:
-                    answer = location
-                    break
-            location = location + step
-            if location % 1_000_000 == 0:
-                print (location)
-        location = answer - step
-        step = int(step/stepsize)
-    
-    return answer
+    seeds = [[data['seeds'][x], data['seeds'][x] + data['seeds'][x+1] - 1] for x in range(0, len(data['seeds']), 2)]
+    translations = [
+        'seed-to-soil',
+        'soil-to-fertilizer',
+        'fertilizer-to-water',
+        'water-to-light',
+        'light-to-temperature',
+        'temperature-to-humidity',
+        'humidity-to-location',
+    ]
+    for translation in translations:
+        seeds = translateRange(seeds, data[translation])
+    seeds = sorted(seeds, key=lambda x: x[0])
+    return seeds[0][0]
+
 
 def solve(data):
     """Solve the puzzle for the given input"""
