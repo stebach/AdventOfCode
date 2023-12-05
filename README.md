@@ -11,7 +11,7 @@ python, so my count may not be in sync with the starts on the AoC website.
 
 | Year    | Stars  | Progress                                        |
 |---------|--------|-------------------------------------------------|
-| 2023    | 8/50   | ![](https://mdtools.ste.li/progress/8/50.png)   |
+| 2023    | 10/50  | ![](https://mdtools.ste.li/progress/10/50.png)  |
 | 2022    | 4/50   | ![](https://mdtools.ste.li/progress/4/50.png)   |
 | 2021    | 0/50   | ![](https://mdtools.ste.li/progress/0/50.png)   |
 | 2020    | 0/50   | ![](https://mdtools.ste.li/progress/0/50.png)   |
@@ -20,6 +20,5 @@ python, so my count may not be in sync with the starts on the AoC website.
 | 2017    | 0/50   | ![](https://mdtools.ste.li/progress/0/50.png)   |
 | 2016    | 0/50   | ![](https://mdtools.ste.li/progress/0/50.png)   |
 | 2015    | 0/50   | ![](https://mdtools.ste.li/progress/0/50.png)   |
-| overall | 20/450 | ![](https://mdtools.ste.li/progress/20/450.png) |
+| overall | 22/450 | ![](https://mdtools.ste.li/progress/22/450.png) |
 
-end?
