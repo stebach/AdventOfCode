@@ -1,11 +1,6 @@
 import solve_2018_05 as subject
 import pytest
 
-@pytest.fixture
-def puzzle_input():
-    return [1, 2, 3]
-
-
 def test_reduce():
     assert subject.reduce("aA") == ""
     assert subject.reduce("abBA") == ""

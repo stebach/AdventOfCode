@@ -16,11 +16,17 @@ def puzzle_input():
         # as tuple (strings)
         # return tuple(map(lambda line: line.strip(), inputdata.readlines()))
 
+        # run lines through function
+        # return parse_lines(inputdata.readlines())
+
         # as tuple (strings) with parse_line
         return tuple(map(parse_line, inputdata.readlines()))
 
 def parse_line(line):
     return line.strip()
+
+def parse_lines(lines):
+    return [x for x in lines]
 
 def part1(data):
     """Solve part 1"""

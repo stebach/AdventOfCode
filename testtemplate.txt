@@ -7,7 +7,11 @@ def puzzle_input():
 
 @pytest.mark.skip(reason="not yet implemented")
 def test_parse_line(puzzle_input):
-    assert subject.parse_line(puzzle_input) == 1
+    assert tuple(map(subject.parse_line, puzzle_input)) == [1, 2, 3]
+
+@pytest.mark.skip(reason="not yet implemented")
+def test_parse_lines(puzzle_input):
+    assert subject.parse_lines(puzzle_input) == 1
 
 @pytest.mark.skip(reason="not yet implemented")
 def test_part1_example1(puzzle_input):
