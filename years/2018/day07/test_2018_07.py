@@ -19,7 +19,8 @@ def test_parse_lines(puzzle_input):
         "F": ["C"],
         "B": ["A"],
         "D": ["A"],
-        "E": ["B","D","F"]
+        "E": ["B","D","F"],
+        "C": []
     }
 
 def test_part1_example1(puzzle_input):
