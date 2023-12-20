@@ -35,7 +35,7 @@ def test_parse_lines(puzzle_input, puzzle_input2):
         'inv': ('&', ('b',), { 'a': False }),
         'b': ('%', ('con',), { 'global': False }),
         'con': ('&', ('output',), { 'a': False, 'b': False }),
-        'output': (None, tuple(), {  })
+        'output': (None, tuple(), { 'global': True })
     }
 
 def test_part1_example1(puzzle_input):
