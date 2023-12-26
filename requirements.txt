@@ -1,2 +1,5 @@
 requests
 regex
+numpy
+networkx
+z3-solver
