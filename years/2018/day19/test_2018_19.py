@@ -16,7 +16,7 @@ def puzzle_input():
 
 def test_parse_line(puzzle_input):
     assert tuple(map(subject.parse_line, puzzle_input)) == (
-        (subject.OPCODE_IP, 0),
+        (subject.OPCODE_IP, 0, 0, 0),
         (subject.OPCODE_SETI, 5, 0, 1),
         (subject.OPCODE_SETI, 6, 0, 2),
         (subject.OPCODE_ADDI, 0, 1, 0),
