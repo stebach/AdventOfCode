@@ -40,6 +40,16 @@ def part2(data):
     exit()
     return data
 
+def draw_map():
+    map = networkx.Graph()
+    map.add_edge((0,0),(0,1))
+    map.add_edge((0,1),(1,1))
+    map.add_edge((1,0),(1,1))
+    networkx.shortest_path(map, (0,0), (1,0))
+    networkx.draw(map, pos={x:x for x in map.nodes}, with_labels=True)
+    plt.show()
+
+
 def solve(data):
     """Solve the puzzle for the given input"""
     solution1 = part1(data)
