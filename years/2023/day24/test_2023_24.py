@@ -29,20 +29,3 @@ def test_part1_example1(puzzle_input):
     assert subject.find_intersection(points[0], points[3], True) == (6.2, 19.4, points[0][0][2])
     assert subject.find_intersection(points[0], points[4], True) == None
     assert subject.find_intersection(points[1], points[5], True) == None
-
-
-def test_part2_example1(puzzle_input):
-    assert subject.part2(puzzle_input) == 1
-
-@pytest.mark.skip(reason="not yet implemented")
-def test_part2_example2(puzzle_input):
-    assert subject.part2(puzzle_input) == 1
-
-@pytest.mark.skip(reason="not yet implemented")
-def test_part2_example3(puzzle_input):
-    assert subject.part2(puzzle_input) == 1
-
-@pytest.mark.skip(reason="not yet implemented")
-def test_part2_example4(puzzle_input):
-    assert subject.part2(puzzle_input) == 1
-
