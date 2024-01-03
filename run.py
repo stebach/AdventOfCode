@@ -82,7 +82,7 @@ def run_script(year, day, force=False):
         if response.status_code == 200:
             # Write the content of the response to a file
             with open(input_file, 'wb') as file:
-                file.write(response.content.strip())
+                file.write(response.content.rstrip())
         else:
             print(f"Failed to download the file. Status code: {response.status_code}")
 
@@ -96,3 +96,10 @@ def run_script(year, day, force=False):
         print("\n")
 
 run_scripts()
+if os.path.exists('./force.txt'):
+    with open("./force.txt", "r", encoding="utf-8") as force_file:
+        data = force_file.read().strip().split(',')
+        if len(data) == 2 and len(data[0]) == 4 and len(data[1]) == 2:
+            run_script(day=data[1], year=data[0], force=True)
+        else:
+            print("wrong format in force file - use YYYY,DD")
