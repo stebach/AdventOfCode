@@ -157,19 +157,6 @@ def part2(data):
                         max_val = max(max_val, run_amplifiers_advanced(a+5,b+5,c+5,d+5,e+5, data))
     return max_val
 
-def draw_map():
-    print('map example:')
-    #import networkx as nx
-    #import matplotlib.pyplot as plt
-    #map = nx.Graph()
-    #map.add_edge((0,0),(0,1))
-    #map.add_edge((0,1),(1,1))
-    #map.add_edge((1,0),(1,1))
-    #nx.shortest_path(map, (0,0), (1,0))
-    #nx.draw(map, pos={x:x for x in map.nodes}, with_labels=True)
-    #plt.show()
-
-
 def solve(data):
     """Solve the puzzle for the given input"""
     solution1 = part1(data)

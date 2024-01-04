@@ -17,16 +17,6 @@ def test_intcode():
 999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99], input, output)
     assert output == [999, 1000, 1001]
 
-
-
-@pytest.fixture
-def puzzle_input():
-    return [1, 2, 3]
-
-@pytest.mark.skip(reason="not yet implemented")
-def test_parse_line(puzzle_input):
-    assert tuple(map(subject.parse_line, puzzle_input)) == [1, 2, 3]
-
 def test_run_amplifiers():
     assert subject.run_amplifiers(4,3,2,1,0, [3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0]) == 43210
     assert subject.run_amplifiers(0,1,2,3,4, [3,23,3,24,1002,24,10,24,1002,23,-1,23,
