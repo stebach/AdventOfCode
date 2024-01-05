@@ -9,12 +9,6 @@ def puzzle_input():
     with open(os.path.dirname(__file__) + "/input.txt", "r", encoding="utf-8") as inputdata:
         return [int(x) for x in inputdata.read().split(',')]
 
-def parse_line(line):
-    return line.strip()
-
-def parse_lines(lines):
-    return [x for x in lines]
-
 def intcode(data, input = [], output = [], pointer = 0, relative_base = 0):
     while data[pointer] != 99:
         opcode = data[pointer] % 100
