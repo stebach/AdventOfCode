@@ -52,12 +52,12 @@ def tools():
     print('map example:')
     #import networkx as nx
     #import matplotlib.pyplot as plt
-    #map = nx.Graph()
-    #map.add_edge((0,0),(0,1))
-    #map.add_edge((0,1),(1,1))
-    #map.add_edge((1,0),(1,1))
-    #nx.shortest_path(map, (0,0), (1,0))
-    #nx.draw(map, pos={x:x for x in map.nodes}, with_labels=True)
+    #graph = nx.Graph()
+    #graph.add_edge((0,0),(0,1))
+    #graph.add_edge((0,1),(1,1))
+    #graph.add_edge((1,0),(1,1))
+    #nx.shortest_path(graph, (0,0), (1,0))
+    #nx.draw(graph, pos={x:x for x in graph.nodes}, with_labels=True)
     #plt.show()
 
     print('numpy:')
