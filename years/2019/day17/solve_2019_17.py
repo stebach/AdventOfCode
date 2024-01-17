@@ -205,20 +205,3 @@ if __name__ == "__main__":
     puzzle_input = puzzle_input()
     solutions = solve(puzzle_input)
     print("\n".join(str(solution) for solution in solutions))
-
-def tools():
-    print('map example:')
-    #import networkx as nx
-    #import matplotlib.pyplot as plt
-    #map = nx.Graph()
-    #map.add_edge((0,0),(0,1))
-    #map.add_edge((0,1),(1,1))
-    #map.add_edge((1,0),(1,1))
-    #nx.shortest_path(map, (0,0), (1,0))
-    #nx.draw(map, pos={x:x for x in map.nodes}, with_labels=True)
-    #plt.show()
-
-    print('numpy:')
-    #import numpy as np
-    #np.lcm(1,2)
-    #np.lcm.reduce([1,2,3,4])
