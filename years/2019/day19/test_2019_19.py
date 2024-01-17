@@ -5,17 +5,6 @@ import pytest
 def puzzle_input():
     return [1, 2, 3]
 
-@pytest.mark.skip(reason="not yet implemented")
-def test_parse_line(puzzle_input):
-    assert tuple(map(subject.parse_line, puzzle_input)) == [1, 2, 3]
-
-@pytest.mark.skip(reason="not yet implemented")
-def test_parse_lines(puzzle_input):
-    assert subject.parse_lines(puzzle_input) == 1
-
-def test_solve(puzzle_input):
-    assert subject.solve(puzzle_input) == 1,1
-
 def test_intcode():
     data = [1,9,10,3,2,3,11,0,99,30,40,50]
     subject.intcode(data)
