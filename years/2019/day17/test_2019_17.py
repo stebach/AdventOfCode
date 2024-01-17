@@ -44,18 +44,4 @@ def test_get_alignment_parameters():
     '..#...#...#..',
     '..#####...^..']) == 76
 
-@pytest.fixture
-def puzzle_input():
-    return [1, 2, 3]
-
-@pytest.mark.skip(reason="not yet implemented")
-def test_parse_line(puzzle_input):
-    assert tuple(map(subject.parse_line, puzzle_input)) == [1, 2, 3]
-
-@pytest.mark.skip(reason="not yet implemented")
-def test_parse_lines(puzzle_input):
-    assert subject.parse_lines(puzzle_input) == 1
-
-def test_solve(puzzle_input):
-    assert subject.solve(puzzle_input) == 1,1
 

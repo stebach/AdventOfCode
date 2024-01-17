@@ -81,10 +81,6 @@ def intcode_expand(data, index):
     while index >= len(data):
         data.append(0)
 
-def parse_line(line):
-    line = line.strip()
-    return line
-
 def get_alignment_parameters(data):
     result = 0
     for y, row in enumerate(data):
@@ -94,9 +90,6 @@ def get_alignment_parameters(data):
                     result += x * y
 
     return result
-
-def parse_lines(lines):
-    return [x for x in lines]
 
 def solve(data):
     """Solve the puzzle for the given input"""
