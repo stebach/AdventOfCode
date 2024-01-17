@@ -150,7 +150,7 @@ def find_shortest2(mapdata):
                     newpos = deepcopy(item[2])
                     newpos[item[4]] = way[-1]
                     for xx in range(4):
-                        check = tuple([tuple(sorted(copy(new_keys)))] + [tuple(newpos), xx])
+                        check = tuple([tuple(sorted(copy(new_keys)))] + [tuple(newpos), xx, item[0] + len(way) - 1])
                         if check not in seen:
                             seen.add(check)
                             queue.put([item[0] + len(way) - 1, copy(new_keys), newpos, check, xx])
