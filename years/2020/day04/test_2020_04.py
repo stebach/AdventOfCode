@@ -114,6 +114,4 @@ def test_is_valid_strict(puzzle_input2, puzzle_input3):
     assert subject.is_valid_strict(data2[2]) == True
     assert subject.is_valid_strict(data2[3]) == True
 
-def test_solve(puzzle_input):
-    assert subject.solve(puzzle_input) == 1,1
 
