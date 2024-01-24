@@ -61,7 +61,6 @@ def run_script(year, day, force=False):
                 file.write(data.replace("{{day}}", day).replace("{{year}}", year))
                 file.close()
 
-
     input_file = path + "/input.txt"
     if not os.path.exists(input_file):
         print ("\nFetching input\n")
