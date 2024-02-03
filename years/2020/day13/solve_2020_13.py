@@ -70,19 +70,3 @@ if __name__ == "__main__":
     puzzle_input = puzzle_input()
     solutions = solve(puzzle_input)
     print("\n".join(str(solution) for solution in solutions))
-
-def tools():
-
-    print('z3:')
-    #import z3
-    #opt = z3.Solver()
-    #a = z3.Int('a')
-    #b = z3.Int('b')
-    #c = z3.Int('c')
-    #opt.add(a < 6, a > 0, b < 6, b > 0, c < 6, c > 0)
-    #if opt.check() == z3.unsat:
-    #    model = opt.model()
-    #    print(model)
-    #    print(model[a])
-    #    print(model[b])
-    #    print(model[c])
