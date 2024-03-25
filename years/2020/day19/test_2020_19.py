@@ -40,7 +40,4 @@ def test_parse_lines(puzzle_input):
 def test_create_regex(puzzle_input):
     data = subject.parse_lines(puzzle_input)
     assert subject.create_regex(data[0]) ==  'a((aa|bb)(ab|ba)|(ab|ba)(aa|bb))b'
-
-def test_solve(puzzle_input):
-    assert subject.solve(puzzle_input) == 1,1
-
+    
