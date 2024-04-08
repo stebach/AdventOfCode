@@ -29,6 +29,7 @@ def play_deterministic(data):
     return [x for x in scores if x < 1000][0] * rolls
 
 def play_dirac(data):
+    datamap = {}
     throws = {
         3: 1,
         4: 3,
@@ -48,22 +49,38 @@ def play_dirac(data):
     ])
     wins = [0,0]
     while len(queue) > 0:
-        next_game_orig = queue.popleft()
-        for roll in throws:
-            next_game = deepcopy(next_game_orig)
-            next_game['positions'][next_game['current_player']] = (next_game['positions'][next_game['current_player']] + roll) % 10
-            next_game['scores'][next_game['current_player']] += next_game['positions'][next_game['current_player']] + 1
-            next_game['count'] *= throws[roll]
-            if next_game['scores'][next_game['current_player']] > 20:
-                wins[next_game['current_player']] += next_game['count']
-            else:
+        next_game_orig = queue.pop()
+        fromkey = "_".join([str(x) for x in [*next_game_orig['positions'],*next_game_orig['scores'],next_game_orig['current_player']]])
+        if fromkey in datamap:
+            add_winners(datamap, fromkey, wins, next_game_orig['count'])
+        else:
+            datamap[fromkey] = []
+            for roll in throws:
+                next_game = deepcopy(next_game_orig)
+                current_player = next_game['current_player']
+                next_game['positions'][current_player] = (next_game['positions'][current_player] + roll) % 10
+                next_game['scores'][current_player] += next_game['positions'][current_player] + 1
                 next_game['current_player'] = (next_game['current_player'] + 1) % 2 
-                entry = [x for x in queue if x['positions'] == next_game['positions'] and x['scores'] == next_game['scores'] and x['current_player'] == next_game['current_player']]
-                if len(entry) > 0:
-                    entry[0]['count'] += next_game['count']
+                tokey = "_".join([str(x) for x in [*next_game['positions'],*next_game['scores'],next_game['current_player']]])
+                next_game['count'] *= throws[roll]
+                if next_game['scores'][current_player] > 20:
+                    datamap[fromkey].append(['win_' + str(current_player), throws[roll]])
+                    wins[current_player] += next_game['count']
                 else:
+                    datamap[fromkey].append([tokey, throws[roll]])
                     queue.append(next_game)
     return max(wins)
+
+def add_winners(datamap, fromkey, wins, amount):
+    for (target, multiplicator) in datamap[fromkey]:
+        if target == 'win_0':
+            fromkey = None
+            wins[0] += amount * multiplicator
+        elif target == 'win_1':
+            fromkey = None
+            wins[1] += amount * multiplicator
+        else:
+            add_winners(datamap, target, wins, amount * multiplicator)
 
 def solve(data):
     """Solve the puzzle for the given input"""
