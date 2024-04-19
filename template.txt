@@ -53,6 +53,7 @@ def tools():
     #import networkx as nx
     #import matplotlib.pyplot as plt
     #graph = nx.Graph()
+    #graph = nx.DiGraph() #directional graph
     #graph.add_edge((0,0),(0,1))
     #graph.add_edge((0,1),(1,1))
     #graph.add_edge((1,0),(1,1))
