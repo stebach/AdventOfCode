@@ -14,5 +14,7 @@ def test_parse_lines(puzzle_input):
     assert subject.parse_lines(puzzle_input) == 1
 
 def test_solve(puzzle_input):
-    assert subject.solve(puzzle_input) == 1,1
+    data = tuple(map(subject.parse_line, puzzle_input))
+    data = subject.parse_lines(puzzle_input)
+    assert subject.solve(data) == 1,1
 
