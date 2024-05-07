@@ -16,8 +16,8 @@ def puzzle_input():
 
 def test_parse_line(puzzle_input):
     assert dict(map(subject.parse_line, puzzle_input)) == {
-        'x': (123,),
-        'y': (456,),
+        'x': ('123',),
+        'y': ('456',),
         'd': ('AND','x','y'),
         'e': ('OR','x','y'),
         'f': ('LSHIFT','x',2),
