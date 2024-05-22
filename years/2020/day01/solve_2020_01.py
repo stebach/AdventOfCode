@@ -37,19 +37,3 @@ if __name__ == "__main__":
     solutions = solve(puzzle_input)
     print("\n".join(str(solution) for solution in solutions))
 
-def tools():
-    print('map example:')
-    #import networkx as nx
-    #import matplotlib.pyplot as plt
-    #graph = nx.Graph()
-    #graph.add_edge((0,0),(0,1))
-    #graph.add_edge((0,1),(1,1))
-    #graph.add_edge((1,0),(1,1))
-    #nx.shortest_path(graph, (0,0), (1,0))
-    #nx.draw(graph, pos={x:x for x in graph.nodes}, with_labels=True)
-    #plt.show()
-
-    print('numpy:')
-    #import numpy as np
-    #np.lcm(1,2)
-    #np.lcm.reduce([1,2,3,4])
