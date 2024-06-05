@@ -85,3 +85,11 @@ def tools():
     #    print(model[a])
     #    print(model[b])
     #    print(model[c])
+    #opt = z3.Optimize()
+    #x = z3.Int('x')
+    #y = z3.Int('y')
+    #z = z3.Int('z')
+    #count = z3.Int('count')
+    #opt.maximize(count)
+    #if opt.check() == z3.sat:
+    #    model = opt.model()
