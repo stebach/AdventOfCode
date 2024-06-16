@@ -53,7 +53,7 @@ def arrange(data):
                     break
 
 def get_corner_product(data):
-    return np.product([x['id'] for x in data if len(x['matches']) == 2])
+    return np.prod([x['id'] for x in data if len(x['matches']) == 2])
 
 def draw_map(data):
     arrange(data)
