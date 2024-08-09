@@ -17,8 +17,8 @@ python, so my count may not be in sync with the starts on the AoC website.
 | 2020    | 50/50   | ![](https://mdtools.ste.li/progress/50/50.png)   |
 | 2019    | 50/50   | ![](https://mdtools.ste.li/progress/50/50.png)   |
 | 2018    | 50/50   | ![](https://mdtools.ste.li/progress/50/50.png)   |
-| 2017    | 36/50   | ![](https://mdtools.ste.li/progress/36/50.png)   |
+| 2017    | 38/50   | ![](https://mdtools.ste.li/progress/38/50.png)   |
 | 2016    | 50/50   | ![](https://mdtools.ste.li/progress/50/50.png)   |
 | 2015    | 50/50   | ![](https://mdtools.ste.li/progress/50/50.png)   |
-| overall | 436/450 | ![](https://mdtools.ste.li/progress/436/450.png) |
+| overall | 438/450 | ![](https://mdtools.ste.li/progress/438/450.png) |
 
