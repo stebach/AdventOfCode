@@ -93,3 +93,6 @@ def tools():
     #opt.maximize(count)
     #if opt.check() == z3.sat:
     #    model = opt.model()
+
+    print('cache')
+    # from functools import lru_cache 
