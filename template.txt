@@ -96,3 +96,10 @@ def tools():
 
     print('cache')
     # from functools import lru_cache 
+
+    print('regex')
+    # import regex
+    # pattern = r'([0-9]|one|two|three|four|five|six|seven|eight|nine)'
+    # result = regex.findall(pattern, data, overlapped=True)
+    # for match in regex.finditer(r'mul\((\d+),(\d+)\)|do(n\'t)?\(\)', data):
+    #    if match.group(0) in ('do()', 'don\'t()'):
