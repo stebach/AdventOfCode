@@ -46,10 +46,16 @@ def search_crossed_3letter_word(data, word):
                     continue
                 if data[row + 1][col + 1].lower() in outer_chars \
                    and data[row - 1][col - 1].lower() in outer_chars \
-                   and data[row + 1][col + 1].lower() != data[row - 1][col - 1].lower() \
+                   and (
+                       data[row + 1][col + 1].lower() != data[row - 1][col - 1].lower() \
+                        or outer_chars[0] == outer_chars[1]
+                   ) \
                    and data[row + 1][col - 1].lower() in outer_chars \
                    and data[row - 1][col + 1].lower() in outer_chars \
-                   and data[row + 1][col - 1].lower() != data[row - 1][col + 1].lower():
+                   and (
+                       data[row + 1][col - 1].lower() != data[row - 1][col + 1].lower() \
+                        or outer_chars[0] == outer_chars[1]
+                   ):
                     word_count += 1
 
     return word_count
