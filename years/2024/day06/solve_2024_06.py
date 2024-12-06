@@ -42,6 +42,9 @@ def parse_lines(lines):
     return result
 
 def count_visited(data):
+    return len(get_visited(data)) - 1
+
+def get_visited(data):
     current_pos = data['guard']['pos']
     current_dir = data['guard']['direction']
 
@@ -52,29 +55,30 @@ def count_visited(data):
             current_dir = (-current_dir[1], current_dir[0])
         current_pos = (current_pos[0] + current_dir[0], current_pos[1] + current_dir[1])
         visited.add(current_pos)
-
-    return len(visited) - 1
+    
+    return visited
 
 def find_loop_possibilities(data):
+    visited = get_visited(data)
+    if data['guard']['pos'] in visited:
+        visited.remove(data['guard']['pos'])
     loop_count = 0
-    for x in range(data['w']):
-        for y in range(data['h']):
-            if (x,y) in data['obstacles']:
-                continue
-            current_pos = data['guard']['pos']
-            current_dir = data['guard']['direction']
-            path = set()
-            while current_pos[0] >= 0 and current_pos[0] < data['w'] and current_pos[1] >= 0 and current_pos[1] < data['h']:
-                while (current_pos[0] + current_dir[0], current_pos[1] + current_dir[1]) in data['obstacles'] \
-                    or (current_pos[0] + current_dir[0], current_pos[1] + current_dir[1]) == (x,y):
-                    current_dir = (-current_dir[1], current_dir[0])
-                current_pos = (current_pos[0] + current_dir[0], current_pos[1] + current_dir[1])
+    obstacles = data['obstacles']
+    for pos in visited:
+        current_pos = data['guard']['pos']
+        current_dir = data['guard']['direction']
+        path = set()
+        while current_pos[0] >= 0 and current_pos[0] < data['w'] and current_pos[1] >= 0 and current_pos[1] < data['h']:
+            while (current_pos[0] + current_dir[0], current_pos[1] + current_dir[1]) in obstacles \
+                or (current_pos[0] + current_dir[0], current_pos[1] + current_dir[1]) == pos:
+                current_dir = (-current_dir[1], current_dir[0])
+            current_pos = (current_pos[0] + current_dir[0], current_pos[1] + current_dir[1])
 
-                if (current_pos, current_dir) in path:
-                    loop_count += 1
-                    break
+            if (current_pos, current_dir) in path:
+                loop_count += 1
+                break
 
-                path.add((current_pos, current_dir))
+            path.add((current_pos, current_dir))
 
     return loop_count
 
