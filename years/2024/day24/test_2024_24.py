@@ -94,7 +94,6 @@ def test_get_decimal(puzzle_input, puzzle_input2):
 
 
 def test_solve(puzzle_input):
-    data = tuple(map(subject.parse_line, puzzle_input))
     data = subject.parse_lines(puzzle_input)
-    assert subject.solve(data) == (1,1)
+    assert subject.solve(data) == (4, '')
 
