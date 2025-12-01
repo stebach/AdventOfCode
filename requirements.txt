@@ -3,3 +3,6 @@ regex
 numpy
 networkx
 z3-solver
+pytest
+matplotlib
+sympy
