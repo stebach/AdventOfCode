@@ -20,7 +20,10 @@ for y in range(2015, year + 1):
         for d in range(1, 26):
             if os.path.exists('./years/' + str(y) + '/day' + str(d).rjust(2,'0')):
                 count = count + 2
-    years = years + [[y, count, 50]]
+    if y >= 2025:
+        years = years + [[y, count, 24]]
+    else:
+        years = years + [[y, count, 50]]
 
 years.reverse()
 years += [['overall', sum(map(lambda x: x[1], years)), sum(map(lambda x: x[2], years))]]
